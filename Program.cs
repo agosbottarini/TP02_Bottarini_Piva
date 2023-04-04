@@ -49,8 +49,6 @@ void CargarPersona()
     dicPersonas.Add(dni,unaPer);
 }
 
-
-
 void EstadisticasCenso()
 {
     int cantPersonas;
@@ -73,11 +71,9 @@ void EstadisticasCenso()
 
         acum +=valor.ObtenerEdad();
     }
-
     promedio = acum/cantPersonas;
-    Console.WriteLine($"Cantidad de Personas: {cantPersonas}");
-    Console.WriteLine($"Cantidad de Personas Habilitadas para votar: {habilitados}");
-    Console.WriteLine($"Promedio edad: {promedio}");
+
+    MostrarEstadisticasCenso(cantPersonas, habilitados, promedio);
     }
 }
 
@@ -146,4 +142,10 @@ void ValidarDNI(ref int dni)
 
     }
    
+}
+void MostrarEstadisticasCenso(int cantPersonas, int habilitados, int promedio)
+{
+    Console.WriteLine($"Cantidad de Personas: {cantPersonas}");
+    Console.WriteLine($"Cantidad de Personas Habilitadas para votar: {habilitados}");
+    Console.WriteLine($"Promedio edad: {promedio}");
 }
