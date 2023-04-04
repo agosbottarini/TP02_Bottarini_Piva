@@ -32,7 +32,7 @@ class Persona
     public bool PuedeVotar()
     {
         bool puede = false;
-        if(Edad >= 16)
+        if(ObtenerEdad() >= 16)
         {
             puede = true;
         }
