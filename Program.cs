@@ -4,7 +4,7 @@ int caso;
 caso = Funciones.IngresarEntero("Ingrese que caso quiere consultar[1. CARGARPERSONA | 2. ESTADISTICAS | 3. BUSCAR PERSONA | 4. MODIFICAR EMAIL | 5. SALIR]: ");
 Console.WriteLine();
 bool salir = false;
-while(!salir)
+while(salir)
 {
     switch(caso)
     {
@@ -93,7 +93,7 @@ void BuscarPersona()
             Console.WriteLine(valor.Apellido);
             Console.WriteLine(valor.Nombre);
             Console.WriteLine(valor.Email);
-            Console.WriteLine(valor.FechaNacimiento);
+            Console.WriteLine(valor.FechaNacimiento.ToShortDateString());
             Console.WriteLine(valor.ObtenerEdad());
             encontro = true;
 
@@ -110,8 +110,8 @@ void BuscarPersona()
 
 void ModificarEmail()
 {
-    int userDNI = Funciones.IngresarEntero("Ingrese el DNI para cambiar el Email");
-    string newEmail = Funciones.IngresarTexto("Ingrese el nuevo Email");
+    int userDNI = Funciones.IngresarEntero("Ingrese el DNI para cambiar el Email: ");
+    string newEmail = Funciones.IngresarTexto("Ingrese el nuevo Email: ");
 
     foreach(int valor in dicPersonas.Keys)
     {
@@ -140,7 +140,7 @@ void ValidarDNI(ref int dni)
             }
             else
             {
-            dni = Funciones.IngresarEntero("Ingrese un DNI que no haya sido ingresado previamente");
+            dni = Funciones.IngresarEntero("Ingrese un DNI que no haya sido ingresado previamente: ");
             }
         }
 
