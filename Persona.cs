@@ -5,7 +5,7 @@ class Persona
     public string Nombre{get;set;}
      public string Email{get;set;}
     public DateTime FechaNacimiento{get;set;}
-    private int Edad{get;set;}
+    public int Edad{get;set;}
 
     public Persona()
     {
@@ -23,11 +23,10 @@ class Persona
 
     public int ObtenerEdad()
     {
-
         DateTime FechaNacimientoHoy = new DateTime(DateTime.Today.Year, FechaNacimiento.Month, FechaNacimiento.Day);
         if (FechaNacimientoHoy< DateTime.Today)  Edad = DateTime.Today.Year - FechaNacimiento.Year;
             else   Edad = DateTime.Today.Year - FechaNacimiento.Year -1;
-        return Edad; 
+        return Edad;
     }
 
     public bool PuedeVotar()

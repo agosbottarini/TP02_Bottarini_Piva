@@ -19,3 +19,35 @@ void CargarPersona()
 
     dicPersonas.Add(dni,unaPer);
 }
+
+void EstadisticasCenso()
+{
+    int cantPersonas;
+    cantPersonas = dicPersonas.Count;
+    int habilitados = 0;
+    int acum = 0;
+    int promedio;
+    if(cantPersonas == 0)
+    {
+        Console.WriteLine("Aún no se han ingresado personas");
+    }
+    else
+    {
+        foreach (Persona valor in dicPersonas.Values)
+    {
+        if(valor.PuedeVotar())
+        {
+            habilitados ++;
+        }
+
+        acum +=valor.Edad;
+    }
+
+    promedio = acum/cantPersonas;
+    Console.WriteLine($"Cantidad de Personas: {cantPersonas}");
+    Console.WriteLine($"Cantidad de Personas Habilitadas para votar: {habilitados}");
+    Console.WriteLine($"Promedio edad: {promedio}");
+    }
+    
+
+}
