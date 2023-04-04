@@ -1,24 +1,59 @@
 ﻿using System.Collections.Generic;
 Dictionary<int, Persona> dicPersonas = new Dictionary<int, Persona>();
+int caso;
+caso = Funciones.IngresarEntero("Ingrese que caso quiere consultar");
+bool salir = false;
+while(!salir)
+{
+    switch(caso)
+    {
+        case 1:
+        CargarPersona();
+        break;
+
+        case 2:
+        EstadisticasCenso();
+        break;
+
+        case 3:
+        BuscarPersona();
+        break;
+
+        case 4:
+        ModificarEmail();
+        break;
+
+        case 5:
+        Salir(salir);
+        break;
+    }
+        
+}
  
 void CargarPersona()
 {
     int dni = Funciones.IngresarEntero("Ingrese DNI ");
-    string apellido = Funciones.IngresarTexto("Ingrese Curso ");
+    
+
+    ValidarDNI(ref dni);
+
+    string apellido = Funciones.IngresarTexto("Ingrese Apellido ");
     string nom = Funciones.IngresarTexto("Ingrese Nombre ");
     string email = Funciones.IngresarTexto("Ingrese su Email");
     DateTime fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd) ");
     
     Persona unaPer =  new Persona(dni, apellido, nom, email, fn);
-    dni = Funciones.IngresarEntero("Ingrese DNI ");
-    apellido = Funciones.IngresarTexto("Ingrese Apellido ");
-    nom = Funciones.IngresarTexto("Ingrese Nombre ");
-    email = Funciones.IngresarTexto("Ingrese Email");
-    fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd) ");
+    dni = Funciones.IngresarEntero("Ingrese DNI:");
+    apellido = Funciones.IngresarTexto("Ingrese Apellido:");
+    nom = Funciones.IngresarTexto("Ingrese Nombre:");
+    email = Funciones.IngresarTexto("Ingrese Email:");
+    fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd):");
     
 
     dicPersonas.Add(dni,unaPer);
 }
+
+
 
 void EstadisticasCenso()
 {
@@ -89,4 +124,30 @@ void ModificarEmail()
             dicPersonas[valor].Email = newEmail;
         }
     }
+}
+
+void Salir(bool salir)
+{
+    salir = true;
+}
+
+void ValidarDNI(ref int dni)
+{
+    bool puede = false;
+    while(!puede)
+    {
+        foreach(Persona valor in dicPersonas.Values)
+        {
+            if(dni == valor.DNI)
+            {
+            puede = true;
+            }
+            else
+            {
+            dni = Funciones.IngresarEntero("Ingrese un DNI que no haya sido ingresado previamente");
+            }
+        }
+
+    }
+   
 }
