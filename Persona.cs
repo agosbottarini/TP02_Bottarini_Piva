@@ -5,7 +5,7 @@ class Persona
     public string Nombre{get;set;}
      public string Email{get;set;}
     public DateTime FechaNacimiento{get;set;}
-    public int Edad{get;set;}
+    private int Edad{get;set;}
 
     public Persona()
     {

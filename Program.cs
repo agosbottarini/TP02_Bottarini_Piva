@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 Dictionary<int, Persona> dicPersonas = new Dictionary<int, Persona>();
 int caso;
-caso = Funciones.IngresarEntero("Ingrese que caso quiere consultar");
+caso = Funciones.IngresarEntero("Ingrese que caso quiere consultar[1. CARGARPERSONA | 2. ESTADISTICAS | 3. BUSCAR PERSONA | 4. MODIFICAR EMAIL | 5. SALIR]: ");
+Console.WriteLine();
 bool salir = false;
 while(!salir)
 {
@@ -27,6 +28,7 @@ while(!salir)
         Salir(salir);
         break;
     }
+    caso = Funciones.IngresarEntero("Ingrese que caso quiere consultar[1. CARGARPERSONA | 2. ESTADISTICAS | 3. BUSCAR PERSONA | 4. MODIFICAR EMAIL | 5. SALIR]: ");
         
 }
  
@@ -39,16 +41,10 @@ void CargarPersona()
 
     string apellido = Funciones.IngresarTexto("Ingrese Apellido ");
     string nom = Funciones.IngresarTexto("Ingrese Nombre ");
-    string email = Funciones.IngresarTexto("Ingrese su Email");
-    DateTime fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd) ");
+    string email = Funciones.IngresarTexto("Ingrese su Email: ");
+    DateTime fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd): ");
     
     Persona unaPer =  new Persona(dni, apellido, nom, email, fn);
-    dni = Funciones.IngresarEntero("Ingrese DNI:");
-    apellido = Funciones.IngresarTexto("Ingrese Apellido:");
-    nom = Funciones.IngresarTexto("Ingrese Nombre:");
-    email = Funciones.IngresarTexto("Ingrese Email:");
-    fn = Funciones.IngresarFecha("Ingrese Fecha de Nacimiento (aaaa/mm/dd):");
-    
 
     dicPersonas.Add(dni,unaPer);
 }
@@ -75,7 +71,7 @@ void EstadisticasCenso()
             habilitados ++;
         }
 
-        acum +=valor.Edad;
+        acum +=valor.ObtenerEdad();
     }
 
     promedio = acum/cantPersonas;
@@ -98,7 +94,7 @@ void BuscarPersona()
             Console.WriteLine(valor.Nombre);
             Console.WriteLine(valor.Email);
             Console.WriteLine(valor.FechaNacimiento);
-            Console.WriteLine(valor.Edad);
+            Console.WriteLine(valor.ObtenerEdad());
             encontro = true;
 
         }
@@ -134,7 +130,7 @@ void Salir(bool salir)
 void ValidarDNI(ref int dni)
 {
     bool puede = false;
-    while(!puede)
+    while(puede)
     {
         foreach(Persona valor in dicPersonas.Values)
         {
