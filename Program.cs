@@ -48,6 +48,45 @@ void EstadisticasCenso()
     Console.WriteLine($"Cantidad de Personas Habilitadas para votar: {habilitados}");
     Console.WriteLine($"Promedio edad: {promedio}");
     }
+}
+
+void BuscarPersona()
+{
+    int userDNI = Funciones.IngresarEntero("Ingrese DNI ");
+    bool encontro = false;
+    foreach(Persona valor in dicPersonas.Values)
+    {
+        if(userDNI == valor.DNI) 
+        {
+            Console.WriteLine(valor.DNI);
+            Console.WriteLine(valor.Apellido);
+            Console.WriteLine(valor.Nombre);
+            Console.WriteLine(valor.Email);
+            Console.WriteLine(valor.FechaNacimiento);
+            Console.WriteLine(valor.Edad);
+            encontro = true;
+
+        }
+        
+    }
+    if(!encontro)
+    {
+        Console.WriteLine("No se encuentra el DNI");
+    }
     
 
+}
+
+void ModificarEmail()
+{
+    int userDNI = Funciones.IngresarEntero("Ingrese el DNI para cambiar el Email");
+    string newEmail = Funciones.IngresarTexto("Ingrese el nuevo Email");
+
+    foreach(int valor in dicPersonas.Keys)
+    {
+        if(userDNI == valor)
+        {
+            dicPersonas[valor].Email = newEmail;
+        }
+    }
 }
